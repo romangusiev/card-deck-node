@@ -1,7 +1,8 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const deckRoutes = require('./routes/deckRoutes');
 
-app.get('/', (req, res) => res.send('Hello World!'))
+const app = express();
 
-app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${port}!`))
+app.use('/api/deck', deckRoutes);
+
+app.listen(process.env.PORT || 3000, () => console.log('Card-deck is started'));
