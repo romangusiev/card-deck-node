@@ -1,14 +1,15 @@
 const express = require('express');
 const deckStorage = require('../data/deckStorage');
+
 const deckRouter = express.Router();
 
 deckRouter.post('/', (req, res) => {
-  let id = deckStorage.addDeck();
-  res.send({id});
+  const id = deckStorage.addDeck();
+  res.send({ id });
 });
 
 deckRouter.use('/:id', (req, res, next) => {
-  let deck = deckStorage.getDeck(req.params.id);
+  const deck = deckStorage.getDeck(req.params.id);
   if (deck.error) {
     res.sendStatus(404);
   } else {
@@ -22,7 +23,7 @@ deckRouter.get('/:id', (req, res) => {
 });
 
 deckRouter.get('/:id/card', (req, res) => {
-  let card = req.deck.dealNextCard();
+  const card = req.deck.dealNextCard();
   res.send(card);
 });
 

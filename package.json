@@ -8,13 +8,16 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.2.0",
     "eslint": "^5.6.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "jslint": "^0.12.0"
+    "jslint": "^0.12.0",
+    "mocha": "^5.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --exit"
   },
   "repository": {
     "type": "git",
