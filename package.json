@@ -1,0 +1,23 @@
+{
+  "name": "card-deck-node",
+  "version": "1.0.0",
+  "description": "Simple NodeJS API's to manipulate in-memory card decks",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romangusiev/card-deck-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romangusiev/card-deck-node/issues"
+  },
+  "homepage": "https://github.com/romangusiev/card-deck-node#readme"
+}
