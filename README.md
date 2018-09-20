@@ -13,7 +13,7 @@ API used to manage card deck
 |:------------------------|:--------:|:---------------:|
 |/deck                    |POST      |200              |
 
-Example:
+#### Example:
 
     curl -d -X POST https://card-deck.azurewebsites.net/api/deck
 
@@ -26,7 +26,7 @@ Example:
 |:------------------------|:--------:|:---------------:|
 |/deck/{deckId}           |GET       |200              |
 
-Example:
+#### Example:
 
     curl -X GET https://card-deck.azurewebsites.net/api/deck/5d271a3d-a217-4678-b682-4321d8a4b8e3
 
@@ -55,7 +55,7 @@ Example:
 |:------------------------|:--------:|:---------------:|
 |/deck/{deckId}/shuffle   |POST      |200              |
 
-Example:
+#### Example:
 
     curl -d -X POST https://card-deck.azurewebsites.net/api/deck/5d271a3d-a217-4678-b682-4321d8a4b8e3/shuffle
 
@@ -67,7 +67,7 @@ Example:
 |:------------------------|:--------:|:---------------:|
 |/deck/{deckId}/cut   |POST      |200              |
 
-Example:
+#### Example:
 
     curl -d -X POST https://card-deck.azurewebsites.net/api/deck/5d271a3d-a217-4678-b682-4321d8a4b8e3/cut
 
@@ -79,7 +79,7 @@ Example:
 |:------------------------|:--------:|:---------------:|
 |/deck/{deckId}           |DELETE      |200              |
 
-Example:
+#### Example:
 
     curl -X DELETE https://card-deck.azurewebsites.net/api/deck/5d271a3d-a217-4678-b682-4321d8a4b8e3
 
@@ -91,7 +91,7 @@ Example:
 |:------------------------|:--------:|:---------------:|
 |/deck/{deckId}/card      |GET       |200              |
 
-Example:
+#### ####Example:
 
     curl -X GET https://card-deck.azurewebsites.net/api/deck/5d271a3d-a217-4678-b682-4321d8a4b8e3/card
 
