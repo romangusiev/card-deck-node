@@ -17,7 +17,7 @@ API used to manage card deck
 
     curl -d -X POST https://card-deck.azurewebsites.net/api/deck
 
-#### Response
+#### Response:
     { "id": "aed6f71c-fd5c-49b2-a281-4c54fe23d9a3" }
 
 
@@ -30,7 +30,7 @@ API used to manage card deck
 
     curl -X GET https://card-deck.azurewebsites.net/api/deck/5d271a3d-a217-4678-b682-4321d8a4b8e3
 
-#### Response
+#### Response:
     "cards": [
         {
             "faceValue": 1,
@@ -59,7 +59,7 @@ API used to manage card deck
 
     curl -d -X POST https://card-deck.azurewebsites.net/api/deck/5d271a3d-a217-4678-b682-4321d8a4b8e3/shuffle
 
-#### Response
+#### Response:
     200 OK
 
 ## Cut deck by Id
@@ -71,7 +71,7 @@ API used to manage card deck
 
     curl -d -X POST https://card-deck.azurewebsites.net/api/deck/5d271a3d-a217-4678-b682-4321d8a4b8e3/cut
 
-#### Response
+#### Response:
     200 OK
 
 ## Delete deck by Id
@@ -83,7 +83,7 @@ API used to manage card deck
 
     curl -X DELETE https://card-deck.azurewebsites.net/api/deck/5d271a3d-a217-4678-b682-4321d8a4b8e3
 
-#### Response
+#### Response:
     200 OK
 
 ## Get next card from deck
@@ -91,11 +91,11 @@ API used to manage card deck
 |:------------------------|:--------:|:---------------:|
 |/deck/{deckId}/card      |GET       |200              |
 
-#### ####Example:
+#### Example:
 
     curl -X GET https://card-deck.azurewebsites.net/api/deck/5d271a3d-a217-4678-b682-4321d8a4b8e3/card
 
-#### Response
+#### Response:
     { "faceValue": 7, "suit": "Diamond" }
 
 
