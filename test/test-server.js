@@ -59,6 +59,13 @@ describe('Express Server API testing', () => {
         done();
       });
   });
+  it('should delete the Deck on /deck/<id> DELETE', (done) => {
+    requester.delete(`/api/deck/${id}`)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
   it('should return 404 on /deck/<id> GET with wrong id', (done) => {
     requester.get('/api/deck/some-id')
       .end((err, res) => {

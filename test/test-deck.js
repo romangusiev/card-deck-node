@@ -4,19 +4,22 @@ const Deck = require('../data/deck');
 const Card = require('../data/card');
 const deckStorage = require('../data/deckStorage');
 
+let deck;
+let newId;
+
 describe('Deck functionality testing', () => {
   it('should create Cards instances in the cards array', () => {
-    const deck = new Deck();
+    deck = new Deck();
     deck.cards.forEach((card) => {
       expect(card).to.be.an.instanceof(Card);
     });
   });
   it('should instantiate deck with 52 cards', () => {
-    const deck = new Deck();
+    deck = new Deck();
     expect(deck.cards.length).to.equal(52);
   });
   it('should instantiate deck with all unique cards', () => {
-    const deck = new Deck();
+    deck = new Deck();
     const faceMap = {};
     const suitMap = {};
     deck.cards.forEach((card) => {
@@ -31,7 +34,7 @@ describe('Deck functionality testing', () => {
     });
   });
   it('should shuffle the array of cards', () => {
-    const deck = new Deck();
+    deck = new Deck();
     const beforeShuffleCopy = deck.cards.slice(0);
     deck.shuffle();
     let diffs = 0;
@@ -41,7 +44,7 @@ describe('Deck functionality testing', () => {
     expect(diffs).to.be.above(25);
   });
   it('should return next available card', () => {
-    const deck = new Deck();
+    deck = new Deck();
     deck.shuffle();
     deck.cards[0].dealt = true;
     deck.cards[1].dealt = true;
@@ -52,7 +55,7 @@ describe('Deck functionality testing', () => {
     expect(deck.cards[2].suit).to.equal(card.suit);
   });
   it('should return error when no cards are available', () => {
-    const deck = new Deck();
+    deck = new Deck();
     deck.shuffle();
     let index = 52;
     while (index >= 0) {
@@ -62,7 +65,7 @@ describe('Deck functionality testing', () => {
     expect(deck.dealNextCard()).to.eql({ error: 'No more cards available' });
   });
   it('should cut the cards deck', () => {
-    const deck = new Deck();
+    deck = new Deck();
     const oldArray = deck.cards.slice(0);
     deck.cut();
     let rotationIndex = 0;
@@ -74,22 +77,22 @@ describe('Deck functionality testing', () => {
     }
   });
   it('should create a deck in deckStorage', () => {
-    const newId = deckStorage.addDeck();
+    newId = deckStorage.addDeck();
     expect(deckStorage.decks).to.have.property(newId);
     expect(deckStorage.decks[newId]).to.be.an('object');
   });
   it('should get a deck from deckStorage', () => {
-    const newId = deckStorage.addDeck();
-    const deck = deckStorage.getDeck(newId);
+    newId = deckStorage.addDeck();
+    deck = deckStorage.getDeck(newId);
     expect(deck).to.be.an('object');
     expect(deck).to.have.property('cards');
     expect(deck.cards).to.be.an('array');
     expect(deck.cards.length).to.equal(52);
   });
   it('should delete a deck from deckStorage', () => {
-    const newId = deckStorage.addDeck();
+    newId = deckStorage.addDeck();
     deckStorage.deleteDeck(newId);
-    const deck = deckStorage.getDeck(newId);
+    deck = deckStorage.getDeck(newId);
     expect(deck).to.be.an('object');
     expect(deck).to.have.property('error');
     expect(deck).to.eql({ error: 'No deck with given id' });

@@ -1,11 +1,3 @@
-/*
-FaceValue int number:
-1: Ace,
-2-10: a card with the number,
-11: Jack,
-12: Queen,
-13: King
-*/
 const Card = require('./card');
 
 const suitEnum = ['Club', 'Diamond', 'Heart', 'Spade'];
