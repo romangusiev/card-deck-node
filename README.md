@@ -1,5 +1,21 @@
 # Card Deck API
-API used to manage card deck
+
+## Getting Started
+
+Installing dependencies:
+```
+npm install
+```
+Running locally:
+```
+npm start
+```
+Running the tests:
+```
+npm test
+```
+
+## API's
 
 - [Create new deck](#create-new-deck)
 - [Get deck by Id](#get-deck-by-id)
