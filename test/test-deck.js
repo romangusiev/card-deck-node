@@ -73,13 +73,25 @@ describe('Deck functionality testing', () => {
       expect(oldArray[i]).to.equal(deck.cards[rotationIndex % deck.cards.length]);
     }
   });
-  it('should create a deckStorage', () => {
-
+  it('should create a deck in deckStorage', () => {
+    const newId = deckStorage.addDeck();
+    expect(deckStorage.decks).to.have.property(newId);
+    expect(deckStorage.decks[newId]).to.be.an('object');
   });
-  it('should create a deckStorage', () => {
-
+  it('should get a deck from deckStorage', () => {
+    const newId = deckStorage.addDeck();
+    const deck = deckStorage.getDeck(newId);
+    expect(deck).to.be.an('object');
+    expect(deck).to.have.property('cards');
+    expect(deck.cards).to.be.an('array');
+    expect(deck.cards.length).to.equal(52);
   });
-  it('should create a deckStorage', () => {
-
+  it('should delete a deck from deckStorage', () => {
+    const newId = deckStorage.addDeck();
+    deckStorage.deleteDeck(newId);
+    const deck = deckStorage.getDeck(newId);
+    expect(deck).to.be.an('object');
+    expect(deck).to.have.property('error');
+    expect(deck).to.eql({ error: 'No deck with given id' });
   });
 });

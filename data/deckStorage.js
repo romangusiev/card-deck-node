@@ -16,5 +16,9 @@ class DeckStorage {
     if (!this.decks[id]) return { error: 'No deck with given id' }
     return this.decks[id];
   }
+
+  deleteDeck(id) {
+    delete this.decks[id];
+  }
 }
 module.exports = new DeckStorage();

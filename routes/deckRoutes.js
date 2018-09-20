@@ -22,6 +22,11 @@ deckRouter.get('/:id', (req, res) => {
   res.send(req.deck);
 });
 
+deckRouter.delete('/:id', (req, res) => {
+  deckStorage.deleteDeck(req.params.id);
+  res.sendStatus(200);
+});
+
 deckRouter.get('/:id/card', (req, res) => {
   const card = req.deck.dealNextCard();
   res.send(card);
