@@ -7,7 +7,7 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Decks', () => {
+describe('Express Server API testing', () => {
   const requester = chai.request(server).keepOpen();
   let id;
   it('should create a new Deck on /deck POST', (done) => {

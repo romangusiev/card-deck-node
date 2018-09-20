@@ -1,11 +1,22 @@
 /* global it, describe */
-const assert = require('assert');
+const { expect } = require('chai');
 const Deck = require('../data/deck');
+const Card = require('../data/card');
+const deckStorage = require('../data/deckStorage');
 
 describe('Deck functionality testing', () => {
-  it('should instantiate deck with 52 unique cards', () => {
+  it('should create Cards instances in the cards array', () => {
     const deck = new Deck();
-    assert.equal(deck.cards.length, 52);
+    deck.cards.forEach((card) => {
+      expect(card).to.be.an.instanceof(Card);
+    });
+  });
+  it('should instantiate deck with 52 cards', () => {
+    const deck = new Deck();
+    expect(deck.cards.length).to.equal(52);
+  });
+  it('should instantiate deck with all unique cards', () => {
+    const deck = new Deck();
     const faceMap = {};
     const suitMap = {};
     deck.cards.forEach((card) => {
@@ -13,43 +24,62 @@ describe('Deck functionality testing', () => {
       suitMap[card.suit] = suitMap[card.suit] ? suitMap[card.suit] += 1 : 1;
     });
     Object.keys(faceMap).forEach((key) => {
-      assert.equal(faceMap[key], 4);
+      expect(faceMap[key]).to.equal(4);
     });
     Object.keys(suitMap).forEach((key) => {
-      assert.equal(suitMap[key], 13);
+      expect(suitMap[key]).to.equal(13);
     });
   });
   it('should shuffle the array of cards', () => {
     const deck = new Deck();
     const beforeShuffleCopy = deck.cards.slice(0);
     deck.shuffle();
-    assert.notDeepEqual(deck.cards, beforeShuffleCopy);
+    let diffs = 0;
+    deck.cards.forEach((card, index) => {
+      if (card !== beforeShuffleCopy[index]) diffs += 1;
+    });
+    expect(diffs).to.be.above(25);
   });
   it('should return next available card', () => {
     const deck = new Deck();
     deck.shuffle();
     deck.cards[0].dealt = true;
     deck.cards[1].dealt = true;
-    assert.equal(deck.cards[2].dealt, false);
+    expect(deck.cards[2].dealt).to.equal(false);
     const card = deck.dealNextCard();
-    assert.equal(deck.cards[2].dealt, true);
-    assert.equal(deck.cards[2].faceValue, card.faceValue);
-    assert.equal(deck.cards[2].suit, card.suit);
+    expect(deck.cards[2].dealt).to.equal(true);
+    expect(deck.cards[2].faceValue).to.equal(card.faceValue);
+    expect(deck.cards[2].suit).to.equal(card.suit);
+  });
+  it('should return error when no cards are available', () => {
+    const deck = new Deck();
+    deck.shuffle();
+    let index = 52;
+    while (index >= 0) {
+      deck.dealNextCard();
+      index -= 1;
+    }
+    expect(deck.dealNextCard()).to.eql({ error: 'No more cards available' });
   });
   it('should cut the cards deck', () => {
     const deck = new Deck();
-    deck.shuffle();
-    const sumCardsArray = deck.cards.concat(deck.cards);
-    assert.equal(sumCardsArray.length, 104);
+    const oldArray = deck.cards.slice(0);
     deck.cut();
-    let rotationIndex;
-    sumCardsArray.forEach((card, index) => {
-      if (card.faceValue === deck.cards[0].faceValue && card.suit === deck.cards[0].suit) {
-        if (!rotationIndex) rotationIndex = index;
-      }
-    });
-    for (let i = 0; i < 52; i += 1) {
-      assert.equal(deck.cards[i], sumCardsArray[i + rotationIndex]);
+    let rotationIndex = 0;
+    while (deck.cards[rotationIndex] !== oldArray[0]) {
+      rotationIndex += 1;
     }
+    for (let i = 0; i < oldArray.length; i += 1, rotationIndex += 1) {
+      expect(oldArray[i]).to.equal(deck.cards[rotationIndex % deck.cards.length]);
+    }
+  });
+  it('should create a deckStorage', () => {
+
+  });
+  it('should create a deckStorage', () => {
+
+  });
+  it('should create a deckStorage', () => {
+
   });
 });
